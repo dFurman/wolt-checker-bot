@@ -1,0 +1,24 @@
+version: "3"
+services:
+  wolt-checker:
+    build: ./
+    container_name: wolt-checker
+    image: furman/wolt-checker
+    environment:
+      - TZ=Asia/Jerusalem
+      - TELEGRAM_BOT_TOKEN=
+    volumes:
+      - ./db:/app/db
+    restart: unless-stopped
+  
+  wolt-notifier:
+    build: ./
+    container_name: wolt-notifier
+    image: furman/wolt-checker
+    command: "python notify.py"
+    volumes:
+      - ./db:/app/db
+    environment:
+      - TZ=Asia/Jerusalem
+      - TELEGRAM_BOT_TOKEN=
+    restart: unless-stopped
