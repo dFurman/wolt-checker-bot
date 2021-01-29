@@ -3,6 +3,7 @@ import time
 import json
 import telegram
 import logging
+import os
 from database import Database
 from multiprocessing import Process
 
