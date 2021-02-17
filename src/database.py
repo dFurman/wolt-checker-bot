@@ -21,6 +21,7 @@ class Database:
         try:
             self.conn = sqlite3.connect(name);
             self.cursor = self.conn.cursor()
+            self.cursor.execute('CREATE TABLE "Notifications" ("id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, "userId" INTEGER NOT NULL,"slug" TEXT NOT NULL,"registered" TEXT,"removed" TEXT,"removedReason" NUMERIC,"active" INTEGER NOT NULL DEFAULT 1);')
 
         except sqlite3.Error as e:
             print("Error connecting to database!")
